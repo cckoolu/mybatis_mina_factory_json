@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.luyu.dao.CarMapper">
+    <select id="wanted" resultType="Car">
+        select * from car_attr c
+        left join currency_attr ca on c.car_id = ca.attr_id
+        where ca.car_color = 'black' and ca.wheel = 4 and ca.brand_num like '%21';
+    </select>
+
+    <select id="count" resultType="int">
+        select count(0) from car_attr;
+    </select>
+
+</mapper>

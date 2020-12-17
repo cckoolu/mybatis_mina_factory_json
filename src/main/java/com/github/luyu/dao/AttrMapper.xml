@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.luyu.dao.AttrMapper">
+    <select id="num1" resultType="Attr">
+        select * from currency_attr where brand_num = 123;
+    </select>
+
+    <select id="num2" resultType="Attr">
+        select * from currency_attr where  brand_num = 123;
+    </select>
+    
+    <select id="subQuery" resultType="Attr">
+        select * from currency_attr
+        where attr_id = (select attr_id from car_attr  where car_id = '2')
+    </select>
+
+    <select id="num3" resultMap="currency_attr">
+        SELECT car_attr.car_id , car_attr.type_name, currency_attr.wheel , currency_attr.fuel
+        FROM  currency_attr
+        left join car_attr on currency_attr.attr_id =  car_attr.attr_id
+        WHERE currency_attr.brand_num =123;
+    </select>
+
+
+    <resultMap id="currency_attr" type="com.github.luyu.Entity.currency_attr">
+        <id property="attrResult" column="attr_id"/>
+        <result property="wheel" column="wheel"/>
+        <result property="dyn_sys" column="dyn_sys"/>
+        <result property="exh_sys" column="exh_sys"/>
+        <result property="member" column="member"/>
+        <result property="size" column="size"/>
+        <result property="car_door" column="car_door"/>
+        <result property="car_light" column="car_light"/>
+        <result property="Clutch" column="Clutch"/>
+        <result property="car_window" column="car_window"/>
+        <result property="fuel" column="fuel"/>
+        <result property="car_color" column="car_color"/>
+        <result property="brand_num" column="brand_num"/>
+        <association property="car_attr" javaType="com.github.luyu.Entity.car_attr">
+            <id property="car_id" column="car_id"/>
+            <result property="type_id" column="type_id"/>
+            <result property="attr_id" column="attr_id"/>
+            <result property="type_name" column="type_name"/>
+        </association>
+    </resultMap>
+
+
+</mapper>
+
+
+
+

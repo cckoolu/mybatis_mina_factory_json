@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="Bus" type="com.github.luyu.Entity.bus_attr"/>
+        <typeAlias alias="Suv" type="com.github.luyu.Entity.suv_attr"/>
+        <typeAlias alias="Car" type="com.github.luyu.Entity.car_attr"/>
+        <typeAlias alias="Attr" type="com.github.luyu.Entity.currency_attr"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/work?"/>
+                <property name="username" value="root"/>
+                <property name="password" value="luyu"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="com.github.luyu.dao"/>
+    </mappers>
+</configuration>
